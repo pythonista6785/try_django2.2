@@ -5,13 +5,9 @@ from django.template.loader import get_template
 
 def home_page(request):
 	my_title = "Hello there..."
-	context = {"title": "Hello there.."}
-
-	template_name = "title.txt"
-	template_obj = get_template(template_name)
-	rendered_string = template_obj.render(context)
-
-	return render(request,"hello_world.html", {"title": rendered_string})
+	if request.user.is_authenticated:
+		context = {"title": "Hello there..", 'my_list': [1, 2, 3, 4]}
+	return render(request,"home.html", context)
 
 def about_page(request):
 	return render(request,"about.html", {"title": "about"})

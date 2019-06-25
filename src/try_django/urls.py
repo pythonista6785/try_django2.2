@@ -15,6 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path # in old version urls
+from blog.views import (
+    blog_post_detail_page,
+    )
+
 from .views import (
 	home_page,
 	about_page,
@@ -24,6 +28,8 @@ from .views import (
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_page),
+    path('blog/<str:slug>/', blog_post_detail_page),
+    # re_path(r'^blog/(?P<slug>\w+)/$', blog_post_detail_page),   # for older versions
     re_path(r'^pages?/$', home_page),
     path('about/', about_page),
     path('contact', contact_page),
