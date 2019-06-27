@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% include "blog/list-inline.html" with blog_post=object detail=True %}
+{% endblock %}
